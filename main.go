@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"html/template"
 	"io"
 	"os"
@@ -10,6 +9,8 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/unrolled/render"
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/extension"
+	"github.com/yuin/goldmark/renderer/html"
 )
 
 type RenderWrapper struct {
@@ -23,7 +24,7 @@ func (r *RenderWrapper) Render(w io.Writer, name string, data interface{},c echo
 func main() {
 	Router := echo.New()
 	r := &RenderWrapper{render.New(render.Options{
-		Directory:  "../templates",
+		Directory:  "templates",
 		Extensions: []string{".html"},
 		IsDevelopment: true,
 	})}
@@ -31,17 +32,26 @@ func main() {
 
 	Router.GET("/",func(c echo.Context) error {
 		//  read file
-		md,err := os.ReadFile("../posts/hello-world.md")
+		md,err := os.ReadFile("posts/p2.md")
 		if err!= nil {
 			return c.String(500,err.Error())
 		}
+
+		gd := goldmark.New(
+			goldmark.WithExtensions(extension.NewTypographer(),extension.GFM),
+			goldmark.WithRendererOptions(
+				html.WithHardWraps(),
+			
+				html.WithUnsafe(),
+				html.WithXHTML(),
+			))
+
 		var buf bytes.Buffer
-        err = goldmark.Convert(md, &buf);
+        err = gd.Convert(md, &buf);
 		if err!= nil {
 			return c.String(500,err.Error())
 		}
 		
-		fmt.Println(buf.String())
 		//  map of string and interface as data
 		data := make(map[string]interface{})
 
@@ -55,6 +65,8 @@ func main() {
 
 		return nil
 	})
+
+	Router.Static("/static","static")
 
 	Router.Logger.Fatal(Router.Start(":4500"))
 
