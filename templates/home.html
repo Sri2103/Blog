@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/output.css">
+</head>
+<body>
+    <!-- Range over posts  in go template-->
+    
+    <div class="container mx-auto text-center prose lg:prose-lg xl:prose-xl">
+       {{range.posts}}
+       <h2>
+           <a href="/blog/{{.}}">{{.}}</a>
+       </h2>
+       {{end}}
+
+   </div>
+</body>
+</html>
