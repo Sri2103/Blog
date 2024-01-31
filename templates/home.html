@@ -7,15 +7,24 @@
     <link rel="stylesheet" href="/static/css/output.css">
 </head>
 <body>
-    <!-- Range over posts  in go template-->
-    
-    <div class="container mx-auto text-center prose lg:prose-lg xl:prose-xl">
-       {{range.posts}}
-       <h2>
-           <a href="/blog/{{.}}">{{.}}</a>
-       </h2>
-       {{end}}
-
-   </div>
+    <!-- navBar -->
+    <div class="flex flex-col min-h-screen">
+        {{template "NavBar"}}
+        <!-- Range over posts  in go template-->
+        <main class="grow">
+            <div class="container mx-auto text-center prose lg:prose-lg xl:prose-xl">
+                {{range.posts}}
+                <h2>
+                    <a href="/blog/{{.}}">{{.}}</a>
+                </h2>
+                {{end}}
+                
+            </div>
+            <div>
+                {{template "BlogTemplate" .}}
+            </div>
+        </main>
+    </div>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
 </html>

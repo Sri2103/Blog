@@ -6,5 +6,8 @@
   },
   "scripts": {
     "tw": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch"
+  },
+  "dependencies": {
+    "flowbite": "^2.2.1"
   }
 }
