@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"embed"
-	"fmt"
 	"html/template"
 	"io"
 	"strings"
@@ -86,22 +85,9 @@ func main() {
 		if err != nil {
 			return c.String(500, err.Error())
 		}
-		tempData := frontmatter.Get(ctx)
-
-		var tdata struct {
-			Title string   `yaml:"title"`
-			Tags  []string `yaml:"tags"`
-		}
-		if err := tempData.Decode(&tdata); err != nil {
-			fmt.Println(err.Error())
-		}
-
-		fmt.Println("Title: ", tdata.Title)
-		fmt.Println("Tags: ", tdata.Tags)
 
 		data := make(map[string]interface{})
 		data["blog"] = template.HTML(buf.Bytes())
-		
 
 		return c.Render(200, "base.page", data)
 
@@ -123,4 +109,13 @@ func ReadFileNames() ([]string, error) {
 		filenames = append(filenames, strings.Split(f.Name(), ".")[0])
 	}
 	return filenames, nil
+}
+
+func RetrieveFromMeta(ctx parser.Context) interface{} {
+	// Create a new Frontmatter instance with the given markdown content and parse it.
+	tempData := frontmatter.Get(ctx)
+	metaData := map[string]interface{}(nil)
+	_ = tempData.Decode(&metaData) // ignore errors for now
+	return metaData
+
 }

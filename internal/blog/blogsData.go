@@ -3,20 +3,19 @@ package blog
 
 var AllBlogs = []*BlogExcerpt{
 	{
-		Title:       "Go in Action",
-		Description: "Effective Go: Embrace Concurrency",
-		Url:         "/goAction",
-		Image:       "",
-		Date:        "",
-		Tags:        []string{"golang"},
+		Title: "My test markdown file",
+		Description: "This is a test Markdown file. Below are some examples of Markdown syntax",
+		Url:     "/blog/hello-world",
+		Image: "",
+		Date:    "January 15, 2014",
+		Tags:    []string{"test","markdown"},
+	},
+	{
+		Title: "How to update kubernetes cluster",
+		Description: `Kubernetes has been updated! Here's how you can upgrade your existing version`,
+		Url:         "/blog/updatek8sVersion",
+		Date:        "May 31, 2019",
+		Tags:        []string{"howto","kubernetes"},	
 	},
 
-	{
-		Title:       "The Hitchhiker's Guide to the Galaxy",
-		Description: "Chapter 1: Outer Space is Not Just for Living There Anymore.",
-		Url:         "/guideToGalaxy",
-		Image:       "",
-		Date:        "October 20, 2013",
-		Tags:        []string{"books", "space"},
-	},
 }
