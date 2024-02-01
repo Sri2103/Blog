@@ -1,6 +1,15 @@
-# How to upgrade k8s cluster
+---
+title: How to upgrade k8s cluster
 
-## upgrade steps
+date: 2024-01-30
+
+tags:
+ - kubernetes
+ - blogging
+
+description:  Upgrading  a Kubernetes Cluster to a newer  version.
+---
+# How to upgrade k8s cluster
 
 upgrade first control plane
 
