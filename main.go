@@ -62,9 +62,9 @@ func main() {
 			return echo.NewHTTPError(500, err.Error())
 		}
 		data["posts"] = fileNames
+		blog.SortBlogSliceByLatestDate(blog.AllBlogs)
 		data["blogsExcerpts"] = blog.AllBlogs
 		err = c.Render(200, "home", data)
-
 		if err != nil {
 			return echo.NewHTTPError(500, err.Error())
 		}
