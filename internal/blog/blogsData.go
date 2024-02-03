@@ -24,5 +24,12 @@ var AllBlogs = []*BlogExcerpt{
 		Date: "2024-02-02",
 		Tags: []string{"cka","kubernetes"},
 	},
+	{
+		Title: "How to debug the crashed apiserver-1",
+		Description: `When Kubernetes crashes, it becomes hard to understand what went wrong. This guide will help you in debugging the issue and fix it if possible.`,
+		Url: "/blog/p2",
+		Date: "2024-02-02",
+		Tags: []string{"cka","kubernetes"},
+	},
 
 }
