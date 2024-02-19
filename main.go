@@ -55,7 +55,8 @@ func main() {
 			html.WithXHTML(),
 		))
 
-	Router.GET("/", func(c echo.Context) error {
+	rGroup := Router.Group("ui")
+	rGroup.GET("/", func(c echo.Context) error {
 		data := make(map[string]interface{})
 		fileNames, err := ReadFileNames()
 		if err != nil {
@@ -72,7 +73,7 @@ func main() {
 		return nil
 	})
 
-	Router.GET("/blog/:slug", func(c echo.Context) error {
+	rGroup.GET("/blog/:slug", func(c echo.Context) error {
 		title := c.Param("slug")
 		// read blog file
 		md, err := postings.ReadFile("posts/" + title + ".md")
@@ -93,7 +94,7 @@ func main() {
 
 	})
 
-	Router.StaticFS("/static/", echo.MustSubFS(staticFiles, "static"))
+	rGroup.StaticFS("/static/", echo.MustSubFS(staticFiles, "static"))
 
 	Router.Logger.Fatal(Router.Start(":4500"))
 
