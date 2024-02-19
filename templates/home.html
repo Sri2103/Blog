@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/static/css/output.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body>
+<body
+x-data="{ darkMode: localStorage.getItem('dark') === 'true'} "
+x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
+x-bind:class="{ 'dark': darkMode }">
     <!-- navBar -->
     <div class="flex flex-col min-h-screen">
         {{template "NavBar"}}
