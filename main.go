@@ -55,8 +55,8 @@ func main() {
 			html.WithXHTML(),
 		))
 
-	rGroup := Router.Group("ui")
-	rGroup.GET("/", func(c echo.Context) error {
+	rGroup := Router.Group("/ui")
+	rGroup.GET("", func(c echo.Context) error {
 		data := make(map[string]interface{})
 		fileNames, err := ReadFileNames()
 		if err != nil {
